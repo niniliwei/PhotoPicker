@@ -14,16 +14,28 @@
       android:adjustViewBounds="true"
       />
 
-  <ImageView
-      android:layout_margin="5dip"
-      android:layout_alignParentTop="true"
-      android:layout_alignParentRight="true"
-      android:clickable="true"
-      android:padding="5dip"
-      android:id="@+id/v_selected"
-      android:src="@drawable/photo_checkbox_bg"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      />
+  <!--<ImageView-->
+      <!--android:layout_margin="5dip"-->
+      <!--android:layout_alignParentTop="true"-->
+      <!--android:layout_alignParentRight="true"-->
+      <!--android:clickable="true"-->
+      <!--android:padding="5dip"-->
+      <!--android:id="@+id/v_selected"-->
+      <!--android:src="@drawable/photo_checkbox_bg"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--/>-->
+
+    <TextView
+        android:layout_margin="5dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:id="@+id/v_selected"
+        android:background="@drawable/photo_checknum_bg"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:textColor="#fff"
+        android:gravity="center"/>
 
 </me.iwf.photopicker.widget.SquareItemLayout>

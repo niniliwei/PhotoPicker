@@ -1,32 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/rv_photos"
-      android:layout_width="match_parent"
-      android:gravity="center"
-      android:layout_weight="1"
-      android:layout_height="0dip"
-      />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_photos"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      >
         <Button
             android:id="@+id/button"
-            android:text="@string/picker_all_image"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.ActionButton"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:text="@string/picker_all_image" />
 
-  </LinearLayout>
+        <CheckBox
+            android:id="@+id/cb_origin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/button"
+            android:layout_centerVertical="true"
+            android:text="原图"/>
 
+        <TextView
+            android:id="@+id/tv_origin_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/cb_origin"
+            android:layout_marginLeft="5dp"
+            android:textColor="#000"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/button_preview"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/picker_preview_with_count"/>
+    </RelativeLayout>
 </LinearLayout>

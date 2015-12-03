@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import java.io.File;
 import java.util.ArrayList;
@@ -102,26 +104,52 @@ public class PhotoGridAdapter extends SelectableAdapter<PhotoGridAdapter.PhotoVi
 
       holder.vSelected.setSelected(isChecked);
       holder.ivPhoto.setSelected(isChecked);
+      if (isChecked) {
+        holder.vSelected.setText(String.valueOf(getSelectedPhotos().indexOf(photo)+1));
+      } else {
+        holder.vSelected.setText("");
+      }
 
       holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View view) {
-          if (onPhotoClickListener != null) {
-            onPhotoClickListener.onClick(view, position, showCamera());
-          }
-        }
-      });
-      holder.vSelected.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View view) {
-
+//          if (onPhotoClickListener != null) {
+//            onPhotoClickListener.onClick(view, position, showCamera());
+//          }
           boolean isEnable = true;
 
           if (onItemCheckListener != null) {
-            isEnable = onItemCheckListener.OnItemCheck(position, photo, isChecked,
-                getSelectedPhotos().size());
+            isEnable = onItemCheckListener.OnItemCheck(position, photo, isSelected(photo),
+                    getSelectedPhotos().size());
           }
           if (isEnable) {
             toggleSelection(photo);
-            notifyItemChanged(position);
+//            notifyItemChanged(position);
+            notifyDataSetChanged();
+          }
+
+          if(onItemCheckListener != null) {
+            onItemCheckListener.onItemCheckComplete(getSelectedPhotoPaths());
+          }
+
+        }
+      });
+      holder.vSelected.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          boolean isEnable = true;
+
+          if (onItemCheckListener != null) {
+            isEnable = onItemCheckListener.OnItemCheck(position, photo, isSelected(photo),
+                    getSelectedPhotos().size());
+          }
+          if (isEnable) {
+            toggleSelection(photo);
+//            notifyItemChanged(position);
+            notifyDataSetChanged();
+          }
+
+          if(onItemCheckListener != null) {
+            onItemCheckListener.onItemCheckComplete(getSelectedPhotoPaths());
           }
         }
       });
@@ -144,12 +172,12 @@ public class PhotoGridAdapter extends SelectableAdapter<PhotoGridAdapter.PhotoVi
 
   public static class PhotoViewHolder extends RecyclerView.ViewHolder {
     private ImageView ivPhoto;
-    private View vSelected;
+    private TextView vSelected;
 
     public PhotoViewHolder(View itemView) {
       super(itemView);
       ivPhoto   = (ImageView) itemView.findViewById(R.id.iv_photo);
-      vSelected = itemView.findViewById(R.id.v_selected);
+      vSelected = (TextView) itemView.findViewById(R.id.v_selected);
     }
   }
 

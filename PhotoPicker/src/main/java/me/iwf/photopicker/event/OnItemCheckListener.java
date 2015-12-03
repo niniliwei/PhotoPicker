@@ -1,5 +1,7 @@
 package me.iwf.photopicker.event;
 
+import java.util.List;
+
 import me.iwf.photopicker.entity.Photo;
 
 /**
@@ -16,5 +18,7 @@ public interface OnItemCheckListener {
    * @return enable check
    */
   boolean OnItemCheck(int position, Photo path, boolean isCheck, int selectedItemCount);
+
+  void onItemCheckComplete(List<String> paths);
 
 }
